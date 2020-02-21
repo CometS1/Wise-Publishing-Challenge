@@ -11,13 +11,13 @@
 
 <body class="flex-column">
 
-  <header class="header flex-row">
+  <header class="header">
     <img class="header-logo" src="src/assets/img/logo.svg" alt="Moneywise Logo">
     <div class="header-filler"></div>
-    <div class="stock-ticker flex-row">
-      <p id="googleStock" class="ticker-box">Google: </p>
-      <p id="microsoftStock" class="ticker-box">Microsoft: </p>
-      <p id="bitcoinStock" class="ticker-box">Bitcoin: </p>
+    <div class="stock-ticker">
+      <h4 id="googleStock" class="ticker-box">Google: </h4>
+      <h4 id="microsoftStock" class="ticker-box">Microsoft: </h4>
+      <h4 id="bitcoinStock" class="ticker-box">Bitcoin: </h4>
     </div>
   </header>
 
@@ -104,31 +104,33 @@
 
       <form name="subscribe" id="subscribe">
 
-        <div class="flex-row">
-          <label for="firstName">First Name: </label>
+        <div class="form-input">
+          <label for="firstName">First Name</label>
           <input type="text" name="firstName" id="firstName" placeholder="First Name">
         </div>
 
-        <div class="flex-row">
+        <div class="form-input">
           <label for="lastName">Last Name</label>
           <input type="text" name="lastName" id="lastName" placeholder="Last Name">
         </div>
 
-        <div class="flex-row">
+        <div class="form-input">
           <label for="email">Email</label>
           <input type="email" name="email" id="email" placeholder="Email">
         </div>
 
-        <label for="homeOwner">Do you own a home?</label>
-        <div id="homeOwner" class="flex-row">
-          <input type="radio" id="homeOwnerYes" name="homeOwner" value="yes">
-          <label for="homeOwnerYes">Yes</label>
-  
-          <input type="radio" id="homeOwnerNo" name="homeOwner" value="no">
-          <label for="homeOwnerNo">No</label>
+        <div class="form-input">
+          <label for="homeOwner">Do you own a home?</label>
+          <div id="homeOwnerRadio" class="flex-row">
+            <input type="radio" id="homeOwnerYes" name="homeOwnerRadio" value="yes">
+            <label for="homeOwnerYes">Yes</label>
+    
+            <input type="radio" id="homeOwnerNo" name="homeOwnerRadio" value="no">
+            <label for="homeOwnerNo">No</label>
+          </div>
         </div>
 
-        <div class="flex-column">
+        <div class="form-input">
           <label for="buyingWhen">I'm looking to purchase a house in the next</label>
           <select id="buyingWhen" name="buyingWhen">
             <option value="1-3">1 to 3 months</option>
@@ -138,7 +140,9 @@
           </select>
         </div>
 
-        <button type="submit" id="submit" onclick="validateForm()" onsubmit="sendRequest()">Subscribe</button>
+        <div class="form-input">
+          <button type="submit" id="submit" onclick="validateForm()" onsubmit="sendRequest()">Subscribe</button>
+        </div>
       </form>
     </div>
   </div>
