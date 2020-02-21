@@ -8,34 +8,49 @@ function alphaVantage(equityName, tagId) {
       return response.json()
     })
     .then(data => {
-      // Work with JSON data here
       const showStock = document.getElementById(tagId);
-      const dateToday = Date.now();
-      const year = dateToday.getFullYear();
-      const day = dateToday.getDate();
-      const month = dateToday.getMonth();
-      const formattedDate = `${year}-${month}-${day}`;
-      showStock.innerHTML = data["Time Series (Daily)"][formattedDate]["1. open"];
+      const dateToday = data["Meta Data"]["3. Last Refreshed"];
+      showStock.innerHTML = data["Time Series (Daily)"][dateToday]["1. open"];
       //console.log(data["Time Series (Daily)"][formattedDate]["1. open"]);
-      console.log(dateToday);
+      console.log(data);
     })
     .catch(err => {
       console.log(err);
     })
 }
 
-
-
-function validateForm(event){
-  let valid = false;
-  if (!valid) {
-    console.log("test");
-    event.preventDefault();
+function checkInput(elementName) {
+  if (document.getElementById(elementName).value.length < 1) {
+    return true;
   }
+  else { return false }
 }
 
-const submitButton = document.getElementById('submit');
-submitButton.addEventListener('submit', validateForm);
+let submitButton = document.getElementById('submit')
+submitButton.onclick = function (event) {
+  let valid = true;
+  if (checkInput("firstName")) {
+    valid = false
+  }
+  if (checkInput("lastName")) {
+    valid = false
+  }
+  if (checkInput("email")) {
+    valid = false
+  }
+  if (checkInput("firstName")) {
+    valid = false
+  }
+
+  return valid;
+};
+
+submitButton.onsubmit = function (event) {
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () { };
+  xhr.open('POST', 'http://www.dummyaddress.com');
+  xhr.send()
+}
 
 alphaVantage("GOOGL", "googleStock");
 alphaVantage("MSFT", "microsoftStock")
