@@ -2,6 +2,12 @@ import _ from 'lodash';
 import './css/styles.scss';
 import './assets/img/logo.svg';
 
+const dateToday = new Date();
+let dateYesterday = new Date(dateToday);
+dateYesterday.setDate(dateYesterday.getDate() - 1);
+let dateString = getDateString(dateToday);
+let yesterdayDateString = getDateString(dateYesterday);
+
 function getDateString(date) {
   const day = date.getDate();
   let month = date.getMonth() + 1;
@@ -10,12 +16,7 @@ function getDateString(date) {
   return `${year}-${month}-${day}`;
 }
 
-const dateToday = new Date();
-let dateYesterday = new Date(dateToday);
-dateYesterday.setDate(dateYesterday.getDate() - 1);
-let dateString = getDateString(dateToday);
-let yesterdayDateString = getDateString(dateYesterday);
-
+//Retrieves data from the Alpha Vantage API and places it into the stockData element
 function alphaVantage(equityName, tagId) {
   const showStock = document.getElementById(tagId);
   fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${equityName}&apikey=JQ1LE8WZCWJRAMXL`)
@@ -41,26 +42,33 @@ function alphaVantage(equityName, tagId) {
     })
 }
 
+//Checks for the length of input fields
 function checkInput(elementName) {
   if (document.getElementById(elementName).value.length < 1) {
-    return true;
+    return `Error, ${elementName} does not meet the proper criteria.`;
   }
-  else { return false }
+  else { return "" }
 }
 
 let submitButton = document.getElementById('submit')
+
 submitButton.onclick = function (event) {
   let valid = true;
+  let errorMessage = "";
   if (checkInput("firstName")) {
-    valid = false;
+    errorMessage = errorMessage + "Your first name cannot be empty. \n";
   }
   if (checkInput("lastName")) {
-    valid = false;
+    errorMessage = errorMessage + "Your last name cannot be empty. \n";
   }
   if (checkInput("email")) {
-    valid = false;
+    errorMessage = errorMessage + "Your email cannot be empty. \n";
   }
-  if (checkInput("firstName")) {
+
+  console.log(errorMessage);
+
+  if (errorMessage) {
+    alert(errorMessage);
     valid = false;
   }
 
