@@ -1,24 +1,38 @@
-body {
+%flex-column {
   display: flex;
   flex-direction: column;
+}
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+article {
+  p {
+    font-size: 16px;
+    padding-bottom: 20px;
+    line-height: 1.4em;
+  }
+}
+
+body {
+  @extend %flex-column;
   font-family: "Times New Roman", Times, serif;
   line-height: 1.5em;
 }
 
 .form-input {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   padding: 5px;
 }
 
 .flex-column {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
 }
 
 .header {
-  display: flex;
-  flex-direction: row;
+  @extend %flex-row;
   border-style: solid none;
   padding: 10px;
 }
@@ -33,34 +47,22 @@ h3 {
 }
 
 .stock-ticker {
-  display: flex;
-  flex-direction: row;
-}
+  @extend %flex-row;
 
-.ticker-box {
-  border-left: solid;
-  display: flex;
-  flex-direction: column;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-article {
-  p {
-    font-size: 16px;
-    padding-bottom: 20px;
-    line-height: 1.4em;
+  .ticker-box {
+    border-left: solid;
+    @extend %flex-column;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 
-@media screen and (max-width: 720px) {
-  .form {
-    border-top: solid;
-    padding: 10px;
-  }
+.form {
+  border-top: solid;
+  padding: 10px;
 }
 
-@media screen and (min-width: 720px) {
+@media screen and (min-width: 720px) and (min-height: 600px) {
   article {
     p {
       font-size: 20px;
