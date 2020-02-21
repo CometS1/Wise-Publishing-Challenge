@@ -14,10 +14,21 @@ body {
   flex-direction: column;
 }
 
+h3{
+    margin-top: 0;
+}
+
 @media screen and (min-width: 640px) {
   .header {
+    border: solid;
     padding: 10px;
-    background-color: $body-color;
+  }
+
+  .header-filler{
+      flex: 4;
+  }
+
+  .header-logo{
   }
 
   .article {
@@ -32,18 +43,21 @@ body {
   }
 
   .form {
+    border: solid;
     flex: 2;
+    padding: 15px;
     position: fixed;
-    top: 15%;
+    top: 13%;
     right: 10%;
     width: 20%;
   }
 
   .form-filler {
     flex: 2;
-    top: 10%;
-    right: 10%;
-    width: 40%;
+  }
+
+  .ticker-box{
+      padding-left: 10px;
   }
 }
 

@@ -3,18 +3,22 @@ import './css/styles.scss';
 import './assets/img/logo.svg';
 
 function alphaVantage(equityName, tagId) {
+  const showStock = document.getElementById(tagId);
   fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${equityName}&apikey=JQ1LE8WZCWJRAMXL`)
     .then(response => {
       return response.json()
     })
     .then(data => {
-      const showStock = document.getElementById(tagId);
-      const dateToday = data["Meta Data"]["3. Last Refreshed"];
-      showStock.innerHTML = data["Time Series (Daily)"][dateToday]["1. open"];
-      //console.log(data["Time Series (Daily)"][formattedDate]["1. open"]);
-      console.log(data);
+      let dateToday = new Date();
+      const day = dateToday.getDate();
+      let month = dateToday.getMonth() + 1;
+      if (month < 10){ month = "0" + month }
+      const year = dateToday.getFullYear();
+      const date = `${year}-${month}-${day}`;
+      showStock.insertAdjacentHTML("beforeend", data["Time Series (Daily)"][date]["1. open"]);
     })
     .catch(err => {
+      showStock.insertAdjacentHTML("beforeend", "Error");
       console.log(err);
     })
 }
@@ -30,16 +34,16 @@ let submitButton = document.getElementById('submit')
 submitButton.onclick = function (event) {
   let valid = true;
   if (checkInput("firstName")) {
-    valid = false
+    valid = false;
   }
   if (checkInput("lastName")) {
-    valid = false
+    valid = false;
   }
   if (checkInput("email")) {
-    valid = false
+    valid = false;
   }
   if (checkInput("firstName")) {
-    valid = false
+    valid = false;
   }
 
   return valid;
