@@ -1,0 +1,57 @@
+$body-color: red;
+
+.hello {
+  color: $body-color;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 640px) {
+  .header {
+    padding: 10px;
+    background-color: $body-color;
+  }
+
+  .article {
+    flex: 3;
+    padding: 20px 100px;
+    width: 60%;
+  }
+
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .form {
+    flex: 2;
+    position: fixed;
+    top: 10%;
+    right: 10%;
+    width: 20%;
+  }
+
+  .form-filler {
+    flex: 2;
+    top: 10%;
+    right: 10%;
+    width: 40%;
+  }
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1024px) {
+}
+
+@media (min-width: 1200px) {
+}
